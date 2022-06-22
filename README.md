@@ -39,6 +39,48 @@ Für den Import gibt es das Kommando *mongoimport*. Dieses Kommando ist verfügb
 $mongoimport --uri="mongodb://xmluser:xml123@localhost:27017/?authSource=xmldb" --collection=world --file=allCountries-JSON.txt
 ```
 
+### Der geospatial Index compound mit meta keywords
+
+```
+$db.world.createIndex( { "meta.keywords" : 1 , loc : "2dsphere" } )
+
+```
+
+### Geospatial Query für eine LAT und LON
+
+```
+db.places.find(
+   {
+     location:
+       { $near:
+          {
+            $geometry: { type: "Point",  coordinates: [ LAT, LON ] }
+          }
+       }
+   }
+)
+```
+liefert im Ergebnis die Objekte sortiert nach Abstand von LAT,LON
+
+Kombiniert mit einer meta.keywords Abfrage
+```
+db.places.find(
+{
+    $and:[
+    {
+     location:
+       { $near:
+          {
+            $geometry: { type: "Point",  coordinates: [ LAT, LON ] }
+          }
+       }
+    },
+    { meta.keywords: /^searchword1/},
+    { meta.keywords: /^searchword2/}
+   ]
+)
+```
+
 
 
 
