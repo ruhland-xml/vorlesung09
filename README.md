@@ -42,6 +42,7 @@ $mongoimport --uri="mongodb://xmluser:xml123@localhost:27017/?authSource=xmldb" 
 ### Der geospatial Index compound mit meta keywords
 
 ```
+$use xmldb
 $db.world.createIndex( { "meta.keywords" : 1 , loc : "2dsphere" } )
 
 ```
