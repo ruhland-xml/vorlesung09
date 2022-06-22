@@ -36,7 +36,7 @@ Erstelle eine neue Collection *world* und importiere die JSON Datei über den Di
 Für den Import gibt es das Kommando *mongoimport*. Dieses Kommando ist verfügbar auf dem LINUX Rechner, auf dem die mongodb installiert ist. Man muss vorher die JSON Datei auf den Rechner kopieren.
 
 ```
-$mongoimport --uri="mongodb://xmluser:xml123@localhost:27017/?authSource=xmldb" --collection world --file=allCountries-JSON.txt
+$mongoimport --uri="mongodb://xmluser:xml123@localhost:27017/?authSource=xmldb" --collection=world --file=allCountries-JSON.txt
 ```
 
 
